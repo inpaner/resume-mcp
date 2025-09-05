@@ -1,0 +1,12 @@
+"Contributed to microservice systems-level design of an in-house conversational agent for the BPO sector which allowed teams to quickly deliver features independent of each other.",
+"Assisted in writing patents about the text classification, data flow, and data structure technologies behind the in-house conversational agent.",
+"Managed a team of four researchers and engineers to deploy features in an agile manner.",
+"Held two online training sessions for twelve attendees on Python development and Git.",
+"Developed graph data structures that model conversation flow for a conversational agent for the BPO sector.",
+"Designed and developed an annotation tool which increased the efficiency of annotating call recording transcripts resulting in cleaner and more consistent datasets.",
+"Modified and deployed models on text classification.",
+"Developed code to automate testing and deployment of microservices to Kubernetes.",
+
+
+"Performed technical research, software development, and testing using Xamarin.",
+"Researched emerging technologies and industry practices including big data and DevOps to improve pre-sales operations.",
