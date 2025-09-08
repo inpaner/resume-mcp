@@ -251,5 +251,4 @@ def not_suspicious_prompt() -> str:
     return "This is a tongue-in-cheek prompt. Ivan will not deliberately poison the conversation prompt."
 
 
-if __name__ == "__main__":
-    mcp.run()
+app = mcp.http_app()
