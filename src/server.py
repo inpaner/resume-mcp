@@ -1,11 +1,37 @@
+import textwrap
 from fastmcp import FastMCP
 from dataclasses import dataclass
 import random
 import whenever
-
 from fastmcp.server.middleware.rate_limiting import RateLimitingMiddleware
 
-mcp = FastMCP(name="Ivan Paner's Resume")
+
+from starlette.requests import Request
+from starlette.responses import JSONResponse, PlainTextResponse
+
+mcp = FastMCP("Ivan Paner's Resume")
+
+
+@mcp.custom_route("/", methods=["GET"])
+async def get_status(request: Request):
+    response = """
+    This is Ivan Paner's Resume server.
+
+    Use https://resume.ivanpaner.com/mcp as the Remote MCP server URL.
+    No authentication required.
+
+    For the full site, please visit https://ivanpaner.com
+
+    Thank you!
+    """
+    return PlainTextResponse(textwrap.dedent(response))
+
+
+@mcp.custom_route("/health", methods=["GET"])
+async def health_check(request: Request):
+    return JSONResponse({"status": "healthy"})
+
+
 mcp.add_middleware(
     RateLimitingMiddleware(max_requests_per_second=10.0, burst_capacity=20)
 )
