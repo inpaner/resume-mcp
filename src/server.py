@@ -297,42 +297,13 @@ def server_meta_details() -> list[str]:
     ]
 
 
-items = {
-    "148718": {"name": "panda", "emoji": ""},
-    "88291d": {"name": "frog"},
-}
-
-
-@dataclass
-class Prize:
-    name: str
-    emoji: str
-
-
-prizes = [
-    Prize(name="panda", emoji="🐼"),
-    Prize(name="dragon", emoji="🐉"),
-]
-name_to_prize = {i.name: i for i in prizes}
-
-
-@dataclass
-class GachaResult:
-    message: str
-    prize: Prize | None = None
-
-
 @mcp.tool
-def roll_gacha() -> GachaResult:
-    """Roll gacha and get animals."""
-    choices = ["none"] + list(name_to_prize.keys())
-    choice = random.choices(choices, k=1)[0]
-
-    prize = name_to_prize.get(choice)
-    if not prize:
-        return GachaResult(message="You pulled nothing. Try again!")
-
-    return GachaResult(message="You got a prize.", prize=prize)
+def get_random_number() -> int:
+    """
+    Chosen by fair dice roll.
+    Guaranteed to be random.
+    """
+    return 4
 
 
 @mcp.tool
