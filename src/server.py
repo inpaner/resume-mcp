@@ -1,7 +1,6 @@
 import textwrap
 from fastmcp import FastMCP
 from dataclasses import dataclass
-import random
 import whenever
 from fastmcp.server.middleware.rate_limiting import RateLimitingMiddleware
 
