@@ -1,16 +1,16 @@
 FROM ghcr.io/astral-sh/uv:python3.13-alpine
-# ENV UV_COMPILE_BYTECODE=1
-# ENV UV_LINK_MODE=copy
-# ENV UV_TOOL_BIN_DIR=/usr/local/bin
-# RUN --mount=type=cache,id=s/c85302c3-0953-4f19-bb59-65a0d14aa2ad-/root/.cache/uv,target=/root/.cache/uv \
-#   --mount=type=bind,id=s/c85302c3-0953-4f19-bb59-65a0d14aa2ad-uv.lock,source=uv.lock,target=uv.lock \
-#   --mount=type=bind,id=s/c85302c3-0953-4f19-bb59-65a0d14aa2ad-pyproject.toml,source=pyproject.toml,target=pyproject.toml \
-#   uv sync --locked --no-install-project --no-dev
-# RUN uv sync --locked --no-install-project --no-dev
+
 ADD . /app
 WORKDIR /app
-# RUN --mount=type=cache,target=/root/.cache/uv \
-#   uv sync --locked --no-dev
+
+# Run the service as a non-root user.
+RUN addgroup -S app \
+  && adduser -S app -G app \
+  && mkdir -p /tmp/uv-cache \
+  && chown -R app:app /app /tmp/uv-cache
+
+USER app
+ENV UV_CACHE_DIR=/tmp/uv-cache
 RUN uv sync --locked --no-dev
 
 ENV PATH="/app/.venv/bin:$PATH"
